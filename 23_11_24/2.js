@@ -36,8 +36,8 @@ function getStackString() {
   // const s = '2[bc]' //✅
   // const s = '2[bc]2[ac]' //✅
   // const s = '2[abc]3[cd]ef' ✅
-  // const s = "abc3[cd]xyz"
-  // const s = "3[a2[c]]"
+  // const s = 'abc3[cd]xyz' ✅
+  // const s = '3[a2[c]]' //❌
   let stack = []
   let allString = ''
   for (let i = 0; i < s.length; i++) {
