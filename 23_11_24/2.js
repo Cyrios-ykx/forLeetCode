@@ -33,17 +33,18 @@
 
 // 循序渐进
 function getStackString() {
-  // const s = '2[bc]' ✅
-  // const s = '2[bc]2[ac]' ✅
-  const s = '2[abc]3[cd]ef'
+  // const s = '2[bc]' //✅
+  // const s = '2[bc]2[ac]' //✅
+  // const s = '2[abc]3[cd]ef' ✅
   // const s = "abc3[cd]xyz"
   // const s = "3[a2[c]]"
   let stack = []
   let allString = ''
   for (let i = 0; i < s.length; i++) {
-    if (s[i] !== ']') {
-      stack.push(s[i])
-    } else {
+    stack.push(s[i])
+
+    if (s[i] === ']') {
+      stack.pop()
       let repeatString = []
       while (stack[stack.length - 1] !== '[') {
         repeatString.unshift(stack.pop())
@@ -53,6 +54,13 @@ function getStackString() {
       // 重复片段string
       for (let i = 0; i < repeatNum; i++) {
         allString += repeatString.join('')
+      }
+    }
+    console.log(stack)
+    // NaN != NaN // true
+    if (!stack.includes('[') && stack.length !== 0 && isNaN(Number(stack[0]))) {
+      for (let i = 0; i < stack.length; i++) {
+        allString += stack.pop()
       }
     }
   }
